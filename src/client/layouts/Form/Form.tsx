@@ -37,6 +37,7 @@ const Form: React.FC = () => {
         setValue({ age });
       }
     },
+
     {
       type: Type.Select,
       id: 'gender',
@@ -45,6 +46,21 @@ const Form: React.FC = () => {
       options: [
         { id: 'Male', title: 'Male' },
         { id: 'Female', title: 'Female' }
+      ],
+      onChange: (gender) => {
+        setValue({ gender });
+      }
+    },
+
+    {
+      type: Type.Select,
+      id: 'maritalStatus',
+      title: 'Marital status:',
+      placeholder: 'Select marital status',
+      options: [
+        { id: 'Single', title: 'Single' },
+        { id: 'Married', title: 'Married' },
+        { id: 'Divorced', title: 'Divorced' }
       ],
       onChange: (gender) => {
         setValue({ gender });

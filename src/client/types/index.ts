@@ -1,4 +1,5 @@
 export interface Value {
   age: number,
-  gender: 'Male' | 'Female'
+  gender: 'Male' | 'Female',
+  maritalStatus: 'Married' | 'Single' | 'Divorced'
 }

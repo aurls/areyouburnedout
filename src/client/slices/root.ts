@@ -4,7 +4,8 @@ import { Value } from '../types';
 
 const defaultValue: Value = {
   age: 23,
-  gender: 'Male'
+  gender: 'Male',
+  maritalStatus: 'Single'
 }
 
 interface RootState {
