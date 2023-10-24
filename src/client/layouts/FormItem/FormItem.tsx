@@ -14,6 +14,7 @@ interface BaseItem<T = any> {
   value?: T,
   onChange: (value: T) => void,
   required?: boolean,
+  disabled?: boolean,
   style?: React.CSSProperties,
   labelStyle?: React.CSSProperties,
   inputStyle?: React.CSSProperties
@@ -39,6 +40,7 @@ const FormItem: React.FC<Props> = (props) => {
     value,
     onChange,
     required = true,
+    disabled = false,
     style = {},
     labelStyle = {},
     inputStyle = {}
@@ -86,6 +88,7 @@ const FormItem: React.FC<Props> = (props) => {
             onChange={onNumberChange}
             onBlur={onBlur}
             required={required}
+            disabled={disabled}
           />
         );
 
@@ -107,6 +110,7 @@ const FormItem: React.FC<Props> = (props) => {
             value={value}
             onChange={onSelectChange}
             required={required}
+            disabled={disabled}
           >
             {options.map((option) => (
               <option key={option.id} value={option.id}>
