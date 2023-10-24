@@ -4,13 +4,40 @@ import { Value } from '../types';
 
 const defaultValue: Value = {
   age: 23,
+  businessTravel: 'Non-Travel',
+  dailyRate: 0,
+  department: 'Research & Development',
+  distanceFromHome: 0,
+  education: 4,
+  educationField: 'Technical Degree',
+  environmentSatisfaction: 2,
   gender: 'Male',
-  maritalStatus: 'Single'
+  hourlyRate: 0,
+  jobInvolvement: 2,
+  jobLevel: 1,
+  jobRole: 'Research Scientist',
+  jobSatisfaction: 2,
+  maritalStatus: 'Single',
+  monthlyIncome: 0,
+  monthlyRate: 0,
+  numCompaniesWorked: 0,
+  overTime: 'No',
+  percentSalaryHike: 0,
+  performanceRating: 2,
+  relationshipSatisfaction: 2,
+  stockOptionLevel: 0,
+  totalWorkingYears: 0,
+  trainingTimesLastYear: 0,
+  workLifeBalance: 2,
+  yearsAtCompany: 0,
+  yearsInCurrentRole: 0,
+  yearsSinceLastPromotion: 0,
+  yearsWithCurrManager: 0
 }
 
 interface RootState {
   value: Value,
-  prediction: boolean | null,
+  prediction: number | null,
   fetching: boolean,
   error: boolean
 }

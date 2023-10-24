@@ -4,7 +4,8 @@ import './FormItem.scss';
 
 enum Type {
   Number,
-  Select
+  Select,
+  CheckBox
 }
 
 interface BaseItem<T = any> {
@@ -28,6 +29,9 @@ interface NumberItem extends BaseItem<number> {
 
 interface SelectItem extends BaseItem<string> {
   options: { id: string, title: string }[]
+}
+
+interface CheckBox extends BaseItem<boolean> {
 }
 
 type Props = NumberItem | SelectItem;
@@ -57,7 +61,7 @@ const FormItem: React.FC<Props> = (props) => {
 
         const onNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
           // @ts-ignore
-          onChange(Number(event.target.value));
+          onChange({ [id]: Number(event.target.value) });
         };
 
         const onBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,13 +69,13 @@ const FormItem: React.FC<Props> = (props) => {
 
           if (nextValue < min) {
             // @ts-ignore
-            onChange(min);
+            onChange({ [id]: min });
           } else if (nextValue > max) {
             // @ts-ignore
-            onChange(max);
+            onChange({ [id]: max });
           } else {
             // @ts-ignore
-            onChange(nextValue);
+            onChange({ [id]: nextValue });
           }
         };
 
@@ -99,7 +103,10 @@ const FormItem: React.FC<Props> = (props) => {
 
         const onSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
           // @ts-ignore
-          onChange(event.target.value);
+          onChange({ [id]: typeof value === 'number'
+              ? Number(event.target.value)
+              : event.target.value
+          });
         };
 
         return (

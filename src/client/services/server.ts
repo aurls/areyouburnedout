@@ -2,7 +2,7 @@ import { Value } from '../types';
 
 interface PredictionResponse {
   status: 'success' | 'error',
-  value?: boolean
+  prediction?: number
 }
 
 const API_BASE = 'api/v1';
@@ -38,14 +38,14 @@ const post = async <T = unknown>(uri: string, data: any): Promise<T> => {
   return send<T>(uri, data, options);
 };
 
-const postParams = async (value: Value): Promise<boolean> => {
+const postParams = async (value: Value): Promise<number> => {
   const response = await post<PredictionResponse>('attrition', { params: value });
 
   if (response?.status !== 'success') {
     throw new Error('Could not get prediction. Server returned 200, but the model error had occured');
   }
 
-  return response.value!;
+  return response.prediction!;
 };
 
 export default {
