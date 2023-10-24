@@ -39,13 +39,25 @@ const post = async <T = unknown>(uri: string, data: any): Promise<T> => {
 };
 
 const postParams = async (value: Value): Promise<number> => {
-  const response = await post<PredictionResponse>('attrition', { params: value });
+  // const response = await post<PredictionResponse>('attrition', { params: value });
 
-  if (response?.status !== 'success') {
-    throw new Error('Could not get prediction. Server returned 200, but the model error had occured');
-  }
+  // if (response?.status !== 'success') {
+  //   throw new Error('Could not get prediction. Server returned 200, but the model error had occured');
+  // }
 
-  return response.prediction!;
+  // return response.prediction!;
+
+  return new Promise((resolve, reject) => {
+    const random = Number(Math.random().toFixed(2));
+
+    setTimeout(() => {
+      if (random < .2 || random > .95) {
+        reject();
+      } else {
+        resolve(random * 100);
+      }
+    }, 2000);
+  });
 };
 
 export default {

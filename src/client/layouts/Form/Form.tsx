@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from '../../store';
 import { root } from '../../slices';
 import FormItem, { Type } from '../FormItem';
 import Button from '../../components/Button';
+import Prediction from '../../components/Prediction';
+import Error from '../../components/Error';
 
 import './Form.scss';
 
@@ -414,6 +416,12 @@ const Form: React.FC = () => {
         <Button onClick={onReset} title="Reset" disabled={fetching}>
           Reset
         </Button>
+      </div>
+
+      <div className="form__result">
+        {prediction && <Prediction value={prediction} />}
+
+        {error && <Error />}
       </div>
     </>
   );
