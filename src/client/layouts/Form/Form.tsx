@@ -361,7 +361,7 @@ const Form: React.FC = () => {
     },
     {
       id: 'performance',
-      title: 'Performance',
+      title: 'Load & Performance',
       items: [items.jobInvolvement, items.overTime, items.performanceRating]
     },
     {

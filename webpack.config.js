@@ -74,6 +74,9 @@ module.exports = (env = {}) => {
       open: true,
       compress: true,
       historyApiFallback: true,
+      proxy: {
+        '/api': `http://127.0.0.1:${ports.SERVER}`
+      }
     },
 
     plugins: getPlugins(),
