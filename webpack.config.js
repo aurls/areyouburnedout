@@ -94,6 +94,12 @@ module.exports = (env = {}) => {
         {
           test: /\.(scss|sass)$/,
           use: getStyleLoaders()
+        },
+
+        // loading fonts
+        {
+          test: /\.(woff|woff2|ttf)$/,
+          type: 'asset/resource'
         }
       ]
     }
