@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector, useDispatch } from '../../store';
 
 import './FormItem.scss';
 
@@ -51,6 +50,10 @@ const FormItem: React.FC<Props> = (props) => {
         } = props as NumberItem;
 
         const onNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+          onChange(Number(event.target.value));
+        };
+
+        const onBlur = (event: React.SyntheticEvent<HTMLInputElement>) => {
           const nextValue = Number(event.target.value);
 
           if (nextValue < min) {
@@ -73,6 +76,7 @@ const FormItem: React.FC<Props> = (props) => {
             step={step}
             value={value}
             onChange={onNumberChange}
+            onBlur={onBlur}
             required={required}
           />
         );
