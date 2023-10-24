@@ -1,7 +1,7 @@
-export {
-  Type,
+export { Type, default } from './FormItem';
+
+export type {
   BaseItem,
   NumberItem,
-  SelectItem,
-  default
+  SelectItem
 } from './FormItem';
