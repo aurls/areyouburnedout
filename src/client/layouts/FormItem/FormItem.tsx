@@ -132,4 +132,4 @@ export {
   SelectItem
 };
 
-export default FormItem;
+export default React.memo(FormItem);

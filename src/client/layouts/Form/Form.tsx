@@ -14,7 +14,7 @@ const Form: React.FC = () => {
     dispatch(root.setValue({ ...value, ...valueToMerge }));
   };
 
-  const formItems = [
+  const formItems = React.useMemo(() => [
     {
       type: Type.Number,
       id: 'age',
@@ -40,7 +40,7 @@ const Form: React.FC = () => {
       },
       style: { width: '50%' }
     }
-  ];
+  ], []);
 
   return (
     <>
