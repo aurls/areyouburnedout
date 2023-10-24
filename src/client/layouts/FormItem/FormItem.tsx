@@ -50,17 +50,21 @@ const FormItem: React.FC<Props> = (props) => {
         } = props as NumberItem;
 
         const onNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+          // @ts-ignore
           onChange(Number(event.target.value));
         };
 
-        const onBlur = (event: React.SyntheticEvent<HTMLInputElement>) => {
+        const onBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
           const nextValue = Number(event.target.value);
 
           if (nextValue < min) {
+            // @ts-ignore
             onChange(min);
           } else if (nextValue > max) {
+            // @ts-ignore
             onChange(max);
           } else {
+            // @ts-ignore
             onChange(nextValue);
           }
         };
@@ -87,6 +91,7 @@ const FormItem: React.FC<Props> = (props) => {
         } = props as SelectItem;
 
         const onSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+          // @ts-ignore
           onChange(event.target.value);
         };
 
