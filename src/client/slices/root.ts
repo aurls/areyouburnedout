@@ -17,7 +17,7 @@ interface RootState {
 const initialState: RootState = {
   value: defaultValue,
   prediction: null,
-  fetching: true,
+  fetching: false,
   error: false
 };
 
