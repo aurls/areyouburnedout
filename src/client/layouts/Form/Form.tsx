@@ -26,7 +26,7 @@ const Form: React.FC = () => {
     dispatch(root.postParams(value));
   };
 
-  const formItems = React.useMemo(() => [
+  const formItems = [
     {
       type: Type.Number,
       id: 'age',
@@ -62,16 +62,16 @@ const Form: React.FC = () => {
         { id: 'Married', title: 'Married' },
         { id: 'Divorced', title: 'Divorced' }
       ],
-      onChange: (gender) => {
-        setValue({ gender });
+      onChange: (maritalStatus) => {
+        setValue({ maritalStatus });
       }
     }
-  ], []);
+  ];
 
   return (
     <>
       <h1 className="form__title">
-        Are You <span className="form__title-accent">Burned Out</span>??
+        Are You <span className="form__title-accent">Burned Out</span>?
         <br />
         <span className="form__title-secondary">Learn It With AI &gt;&gt;</span>
       </h1>

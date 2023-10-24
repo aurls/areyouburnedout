@@ -40,9 +40,7 @@ const root = createSlice({
       state.prediction = null;
       state.error = false;
     },
-    resetValue: (state) => {
-      state = initialState;
-    },
+    resetValue: () => initialState,
   },
   extraReducers: (builder) => {
     builder
