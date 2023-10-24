@@ -1,13 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Value } from '../types';
 
-interface RootState {}
+const defaultValue: Value = {
+  age: 23,
+  gender: 'Male'
+}
 
-const initialState: RootState = {};
+interface RootState {
+  value: Value
+}
+
+const initialState: RootState = {
+  value: defaultValue
+};
 
 const root = createSlice({
   name: 'root',
   initialState,
-  reducers: {}
+  reducers: {
+    setValue: (state, action: PayloadAction<any>) => {
+      state.value = action.payload;
+    }
+  }
 });
 
 export default {
