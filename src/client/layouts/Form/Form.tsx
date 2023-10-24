@@ -43,11 +43,17 @@ const Form: React.FC = () => {
   ];
 
   return (
-    <div className="form">
-      {formItems.map((item) => (
-        <FormItem key={item.id} {...item} value={value[item.id]} />
-      ))}
-    </div>
+    <>
+      <h1 className="form__title">
+        Are You Burned Out?? Learn It With AI
+      </h1>
+
+      <form className="form">
+        {formItems.map((item) => (
+          <FormItem key={item.id} {...item} value={value[item.id]} />
+        ))}
+      </form>
+    </>
   );
 };
 
