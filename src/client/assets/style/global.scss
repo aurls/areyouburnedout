@@ -29,3 +29,9 @@ h5 {
 h6 {
   font-size: 1em;
 }
+
+@media (max-width: 600px) {
+  .root {
+    font-size: 10px;
+  }
+}
