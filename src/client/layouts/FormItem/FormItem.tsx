@@ -14,7 +14,9 @@ interface BaseItem<T = any> {
   value?: T,
   onChange: (value: T) => void,
   required?: boolean,
-  style?: React.CSSProperties
+  style?: React.CSSProperties,
+  labelStyle?: React.CSSProperties,
+  inputStyle?: React.CSSProperties
 }
 
 interface NumberItem extends BaseItem<number> {
@@ -37,7 +39,9 @@ const FormItem: React.FC<Props> = (props) => {
     value,
     onChange,
     required = true,
-    style = {}
+    style = {},
+    labelStyle = {},
+    inputStyle = {}
   } = props;
 
   const renderItem = (): React.ReactNode => {
@@ -119,11 +123,11 @@ const FormItem: React.FC<Props> = (props) => {
 
   return (
     <div className="form-item" style={style}>
-      <label className="form-item__title" htmlFor={id}>
+      <label className="form-item__title" htmlFor={id} style={labelStyle}>
         {title}
       </label>
 
-      <div className="form-item__input">
+      <div className="form-item__input" style={inputStyle}>
         {renderItem()}
       </div>
     </div>
