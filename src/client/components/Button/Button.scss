@@ -38,4 +38,13 @@
       display: none;
     }
   }
+
+  &:disabled {
+    color: #999;
+    cursor: not-allowed;
+  }
+
+  &.primary {
+    border: 2px solid #333;
+  }
 }
