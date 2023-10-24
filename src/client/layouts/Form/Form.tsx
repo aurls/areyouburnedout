@@ -19,7 +19,9 @@ const Form: React.FC = () => {
   };
 
   const onReset = () => {
-    dispatch(root.resetValue());
+    if (confirm('Are you sure you want to reset? Unsaved data will be lost.')) {
+      dispatch(root.resetValue());
+    }
   };
 
   const onSubmit = () => {
