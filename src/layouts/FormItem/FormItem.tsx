@@ -1,3 +1,5 @@
+/* eslint-disable no-case-declarations */
+
 import React from 'react';
 
 import './FormItem.scss';
@@ -5,33 +7,33 @@ import './FormItem.scss';
 enum Type {
   Number,
   Select
-}
+};
 
 interface BaseItem<T = any> {
-  id: string,
-  type: Type,
-  title: string,
-  value: T,
-  onChange: <Q = T>(value: Q) => void,
-  required?: boolean,
-  disabled?: boolean,
-  style?: React.CSSProperties,
-  labelStyle?: React.CSSProperties,
+  id: string
+  type: Type
+  title: string
+  value: T
+  onChange: <Q = T>(value: Q) => void
+  required?: boolean
+  disabled?: boolean
+  style?: React.CSSProperties
+  labelStyle?: React.CSSProperties
   inputStyle?: React.CSSProperties
 }
 
 interface NumberItem extends BaseItem<number> {
-  min?: number,
-  max?: number,
-  step?: number,
+  min?: number
+  max?: number
+  step?: number
   float?: boolean
 }
 
 interface SelectItem extends BaseItem<string> {
-  options: {
-    id: string | number,
+  options: Array<{
+    id: string | number
     title: string
-  }[]
+  }>
 }
 
 type Props = NumberItem | SelectItem;
@@ -60,11 +62,11 @@ const FormItem: React.FC<Props> = (props) => {
           float = false
         } = props as NumberItem;
 
-        const onNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const onNumberChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
           onChange(Number(event.target.value));
         };
 
-        const onBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const onBlur = (event: React.ChangeEvent<HTMLInputElement>): void => {
           const nextValue = Number(event.target.value);
 
           if (nextValue < min) {
@@ -95,10 +97,10 @@ const FormItem: React.FC<Props> = (props) => {
 
       case Type.Select:
         const {
-          options,
+          options
         } = props as SelectItem;
 
-        const onSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const onSelectChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
           onChange(typeof value === 'number'
             ? Number(event.target.value)
             : event.target.value
@@ -142,7 +144,10 @@ const FormItem: React.FC<Props> = (props) => {
 };
 
 export {
-  Type,
+  Type
+};
+
+export type {
   BaseItem,
   NumberItem,
   SelectItem

@@ -9,7 +9,7 @@ module.exports = (env = {}) => {
   const getPlugins = () => {
     const plugins = [
       new HtmlPlugin({
-        template: 'src/index.html',
+        template: 'src/index.html'
       })
     ];
 
@@ -49,14 +49,14 @@ module.exports = (env = {}) => {
 
     devServer: {
       static: {
-        directory: Path.join(process.cwd(), 'dist'),
+        directory: Path.join(process.cwd(), 'dist')
       },
       port: 9000,
       open: 'public',
       compress: true,
       historyApiFallback: true,
       proxy: {
-        '/api': `http://127.0.0.1:${9100}`,
+        '/api': `http://127.0.0.1:${9100}`
       }
     },
 

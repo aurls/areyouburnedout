@@ -1,6 +1,9 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+import type { PayloadAction } from '@reduxjs/toolkit';
+import type { Params } from '../types';
+
 import server from '../services/server';
-import { Params } from '../types';
 
 const defaultParams: Params = {
   age: 23,
@@ -36,9 +39,9 @@ const defaultParams: Params = {
 }
 
 interface RootState {
-  params: Params,
-  prediction: number | null,
-  fetching: boolean,
+  params: Params
+  prediction: number | null
+  fetching: boolean
   error: boolean
 }
 
@@ -76,7 +79,7 @@ const root = createSlice({
       state.prediction = null;
       state.error = false;
     },
-    reset: () => initialState,
+    reset: () => initialState
   },
   extraReducers: (builder) => {
     builder

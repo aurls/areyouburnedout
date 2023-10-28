@@ -1,14 +1,14 @@
-import { Params } from '../types';
+import type { Params } from '../types';
 
 interface Prediction {
-  id: string,
-  timestamp: number,
-  params: Params,
+  id: string
+  timestamp: number
+  params: Params
   prediction: number
 }
 
 interface Response<T = any> {
-  status: 'success' | 'error',
+  status: 'success' | 'error'
   payload?: T
 }
 
@@ -27,25 +27,25 @@ const send = async <T = unknown>(uri: string, data: any = null, options: Request
     throw new Error(`Could not fetch ${uri}, received ${response.status}`);
   }
 
-  return response.json();
+  return await response.json();
 };
 
 const get = async <T = unknown>(uri: string): Promise<T> => {
-  return send<T>(uri);
+  return await send<T>(uri);
 };
 
 const post = async <T = unknown>(uri: string, data: any): Promise<T> => {
   const options: RequestInit = {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-    },
+      'Content-Type': 'application/json'
+    }
   };
 
-  return send<T>(uri, data, options);
+  return await send<T>(uri, data, options);
 };
 
-const throwPredictionError = () => {
+const throwPredictionError = (): Error => {
   throw new Error('Could not get prediction. Server returned 200, but model error had occured');
 };
 
@@ -56,7 +56,7 @@ const getAttrition = async (id: string): Promise<Prediction> => {
     throwPredictionError();
   }
 
-  return response.payload!;
+  return response.payload as Prediction;
 };
 
 const postParams = async (params: Params): Promise<Prediction> => {
@@ -66,7 +66,7 @@ const postParams = async (params: Params): Promise<Prediction> => {
     throwPredictionError();
   }
 
-  return response.payload!;
+  return response.payload as Prediction;
 };
 
 export default {

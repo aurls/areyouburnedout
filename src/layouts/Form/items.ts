@@ -1,5 +1,7 @@
 import { Type } from '../FormItem';
 
+import type { Params } from '../../types';
+
 const items = {
   age: {
     type: Type.Number,
@@ -92,7 +94,7 @@ const items = {
       { id: 'Marketing', title: 'Marketing' },
       { id: 'Medical', title: 'Medical' },
       { id: 'Technical Degree', title: 'Technical Degree' },
-      { id: 'Other', title: 'Other' },
+      { id: 'Other', title: 'Other' }
     ]
   },
 
@@ -156,7 +158,7 @@ const items = {
       { id: 'Research Director', title: 'Research Director' },
       { id: 'Research Scientist', title: 'Research Scientist' },
       { id: 'Sales Executive', title: 'Sales Executive' },
-      { id: 'Sales Representative', title: 'Sales Representative' },
+      { id: 'Sales Representative', title: 'Sales Representative' }
     ]
   },
 
@@ -251,7 +253,7 @@ const items = {
     type: Type.Number,
     id: 'trainingTimesLastYear',
     title: 'Number of advanced education courses completed last year (Coursera, Udemy, etc.):',
-    min: 0,
+    min: 0
   },
 
   workLifeBalance: {
@@ -270,7 +272,7 @@ const items = {
     type: Type.Number,
     id: 'yearsAtCompany',
     title: 'Years spent at your current company:',
-    min: 0,
+    min: 0
   },
 
   yearsInCurrentRole: {
@@ -285,7 +287,7 @@ const items = {
     id: 'yearsSinceLastPromotion',
     title: 'Years since last promotion:',
     min: 0,
-    onChange: (value, setParams) => {
+    onChange: (value: number, setParams: (paramsToMerge: Partial<Params>) => void) => {
       setParams({
         yearsInCurrentRole: value,
         yearsSinceLastPromotion: value
@@ -297,7 +299,7 @@ const items = {
     type: Type.Number,
     id: 'yearsWithCurrManager',
     title: 'Years with your current manager:',
-    min: 0,
+    min: 0
   }
 };
 
@@ -348,7 +350,7 @@ const groups = [
     id: 'income',
     title: 'Income',
     items: [items.monthlyIncome, items.percentSalaryHike]
-  },
+  }
 ];
 
 export default groups;

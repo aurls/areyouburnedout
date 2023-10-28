@@ -3,7 +3,7 @@ import React from 'react';
 import './Prediction.scss';
 
 interface Props {
-  value: number,
+  value: number
 }
 
 const getRecommendation = (value) => {

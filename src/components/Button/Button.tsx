@@ -4,10 +4,10 @@ import cn from 'classnames';
 import './Button.scss';
 
 interface Props {
-  primary?: boolean,
-  title?: string,
-  onClick: () => void,
-  disabled?: boolean,
+  primary?: boolean
+  title?: string
+  onClick: () => void
+  disabled?: boolean
   children: React.ReactNode
 }
 
