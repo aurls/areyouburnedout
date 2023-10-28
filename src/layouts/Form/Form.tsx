@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuid } from 'uuid';
 import { useSelector, useDispatch } from '../../store';
 import { root } from '../../slices';
 import FormItem from '../FormItem';
@@ -31,15 +32,19 @@ const Form: React.FC = () => {
   };
 
   const onSubmit = (): void => {
-    dispatch(root.postParams(params));
+    const id = uuid();
+
+    dispatch(root.postParams({ id, params }));
+
+    window.location.href = id;
   };
 
   return (
     <>
       <h2 className="form__title">
-        Are&nbsp;You Burning&nbsp;Out, Bro?
+        How Burned&nbsp;Out Are&nbsp;You?, Bro?&nbsp;🤔
         <br />
-        <span className="form__title-secondary">Learn&nbsp;It With&nbsp;AI&nbsp;&gt;&gt;</span>
+        Learn&nbsp;It With&nbsp;AI&nbsp;&gt;&gt;
       </h2>
 
       <form className="form">
@@ -64,7 +69,6 @@ const Form: React.FC = () => {
                   {...item}
                   value={value}
                   onChange={onChange}
-                  disabled={fetching}
                 />
               );
             })}
@@ -73,19 +77,13 @@ const Form: React.FC = () => {
       </form>
 
       <div className="form__actions">
-        <Button primary onClick={onSubmit} title="Ask AI" disabled={fetching}>
+        <Button primary onClick={onSubmit} title="Ask AI">
           &gt;&gt; Ask AI &lt;&lt;
         </Button>
 
-        <Button onClick={onReset} title="Reset" disabled={fetching}>
+        <Button onClick={onReset} title="Reset">
           Reset
         </Button>
-      </div>
-
-      <div className="form__result">
-        {prediction && <Prediction value={prediction} />}
-
-        {error && <Error />}
       </div>
     </>
   );

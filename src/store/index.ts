@@ -1,14 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch as _useDispatch, useSelector as _useSelector } from 'react-redux';
+import logger from 'redux-logger';
 
 import type { TypedUseSelectorHook } from 'react-redux';
 
-import { root } from '../slices';
+import { root, notifications } from '../slices';
+import notificationMiddleware from './middlewares/notifications';
 
 const store = configureStore({
   reducer: {
-    root: root.reducer
-  }
+    root: root.reducer,
+    notifications: notifications.reducer
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(notificationMiddleware, logger)
 });
 
 export type State = ReturnType<typeof store.getState>;

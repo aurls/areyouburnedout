@@ -59,8 +59,8 @@ const getAttrition = async (id: string): Promise<Prediction> => {
   return response.payload as Prediction;
 };
 
-const postParams = async (params: Params): Promise<Prediction> => {
-  const response = await post<Response<Prediction>>('attrition', { params });
+const postParams = async (id: string, params: Params): Promise<Prediction> => {
+  const response = await post<Response<Prediction>>('attrition', { id, params });
 
   if (response?.status !== 'success') {
     throwPredictionError();

@@ -66,7 +66,11 @@ const FormItem: React.FC<Props> = (props) => {
           onChange(Number(event.target.value));
         };
 
-        const onBlur = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        const onFocus = (event: React.FocusEvent<HTMLInputElement>): void => {
+          event.target.select();
+        };
+
+        const onBlur = (event: React.FocusEvent<HTMLInputElement>): void => {
           const nextValue = Number(event.target.value);
 
           if (nextValue < min) {
@@ -89,6 +93,7 @@ const FormItem: React.FC<Props> = (props) => {
             step={step}
             value={value}
             onChange={onNumberChange}
+            onFocus={onFocus}
             onBlur={onBlur}
             required={required}
             disabled={disabled}
@@ -108,21 +113,27 @@ const FormItem: React.FC<Props> = (props) => {
         };
 
         return (
-          <select
-            className="form-item__select"
-            id={id}
-            name={id}
-            value={value}
-            onChange={onSelectChange}
-            required={required}
-            disabled={disabled}
-          >
-            {options.map((option) => (
-              <option key={option.id} value={option.id}>
-                {option.title}
-              </option>
-            ))}
-          </select>
+          <>
+            <select
+              className="form-item__select"
+              id={id}
+              name={id}
+              value={value}
+              onChange={onSelectChange}
+              required={required}
+              disabled={disabled}
+            >
+              {options.map((option) => (
+                <option key={option.id} value={option.id}>
+                  {option.title}
+                </option>
+              ))}
+            </select>
+
+            <div className="form-item__select-icon">
+              ▼
+            </div>
+          </>
         );
 
       default:

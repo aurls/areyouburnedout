@@ -38,14 +38,14 @@ const defaultParams: Params = {
   yearsWithCurrManager: 0
 }
 
-interface RootState {
+interface State {
   params: Params
   prediction: number | null
   fetching: boolean
   error: boolean
 }
 
-const initialState: RootState = {
+const initialState: State = {
   params: defaultParams,
   prediction: null,
   fetching: false,
@@ -63,8 +63,8 @@ const getAttrition = createAsyncThunk(
 
 const postParams = createAsyncThunk(
   'root/postParams',
-  async (params: Params) => {
-    const data = await server.postParams(params);
+  async ({ id, params }: { id: string, params: Params }) => {
+    const data = await server.postParams(id, params);
 
     return data;
   }
