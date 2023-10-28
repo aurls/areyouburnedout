@@ -6,7 +6,7 @@ import './Button.scss';
 interface Props {
   primary?: boolean
   title?: string
-  onClick: () => void
+  onClick?: () => void
   disabled?: boolean
   children: React.ReactNode
 }
@@ -15,7 +15,7 @@ const Button: React.FC<Props> = (props) => {
   const {
     primary = false,
     title,
-    onClick,
+    onClick = () => {},
     disabled = false,
     children
   } = props;
