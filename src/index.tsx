@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Root from './layouts/Root';
 
+import './assets/style/reset.scss';
+import './assets/style/global.scss';
 import './assets/style/fonts.scss';
 
 ReactDOM
