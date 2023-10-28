@@ -10,7 +10,7 @@ import './assets/style/global.scss';
 import './assets/style/fonts.scss';
 
 ReactDOM
-  .createRoot(document.getElementById('root')!)
+  .createRoot(document.getElementById('root') as HTMLDivElement)
   .render(
     <React.StrictMode>
       <Provider store={store}>
