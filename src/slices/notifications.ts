@@ -24,7 +24,7 @@ const notifications = createSlice({
   initialState,
   reducers: {
     info: (state, action: PayloadAction<{ id: string, message: string }>) => {
-      while (state.items.length > MAX_COUNT) {
+      while (state.items.length >= MAX_COUNT) {
         const id = state.items[0]?.id;
 
         if (id) {
