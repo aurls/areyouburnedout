@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import server from '../services/server';
-import { Value } from '../types';
+import { Params } from '../types';
 
-const defaultValue: Value = {
+const defaultParams: Params = {
   age: 23,
   businessTravel: 'Non-Travel',
   dailyRate: 0,
@@ -36,25 +36,34 @@ const defaultValue: Value = {
 }
 
 interface RootState {
-  value: Value,
+  params: Params,
   prediction: number | null,
   fetching: boolean,
   error: boolean
 }
 
 const initialState: RootState = {
-  value: defaultValue,
+  params: defaultParams,
   prediction: null,
   fetching: false,
   error: false
 };
 
+const getAttrition = createAsyncThunk(
+  'root/getAttrition',
+  async (id: string) => {
+    const data = await server.getAttrition(id);
+
+    return data;
+  }
+);
+
 const postParams = createAsyncThunk(
   'root/postParams',
-  async (params: Value) => {
-    const prediction = await server.postParams(params);
+  async (params: Params) => {
+    const data = await server.postParams(params);
 
-    return prediction;
+    return data;
   }
 );
 
@@ -62,22 +71,37 @@ const root = createSlice({
   name: 'root',
   initialState,
   reducers: {
-    setValue: (state, action: PayloadAction<any>) => {
-      state.value = action.payload;
+    setParams: (state, action: PayloadAction<Params>) => {
+      state.params = action.payload;
       state.prediction = null;
       state.error = false;
     },
-    resetValue: () => initialState,
+    reset: () => initialState,
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getAttrition.pending, (state) => {
+        state.prediction = null;
+        state.fetching = true;
+        state.error = false;
+      })
+      .addCase(getAttrition.fulfilled, (state, action) => {
+        state.prediction = action.payload.prediction;
+        state.fetching = false;
+        state.error = false;
+      })
+      .addCase(getAttrition.rejected, (state) => {
+        state.prediction = null;
+        state.fetching = false;
+        state.error = true;
+      })
       .addCase(postParams.pending, (state) => {
         state.prediction = null;
         state.fetching = true;
         state.error = false;
       })
       .addCase(postParams.fulfilled, (state, action) => {
-        state.prediction = action.payload;
+        state.prediction = action.payload.prediction;
         state.fetching = false;
         state.error = false;
       })
@@ -91,6 +115,7 @@ const root = createSlice({
 
 export default {
   ...root.actions,
+  getAttrition,
   postParams,
   reducer: root.reducer
 };

@@ -1,4 +1,4 @@
-export interface Value {
+export interface Params {
   age: number,
   businessTravel: 'Non-Travel' | 'Travel Frequently' | 'Travel_Rarely',
   dailyRate: number,

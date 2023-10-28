@@ -1,8 +1,15 @@
-import { Value } from '../types';
+import { Params } from '../types';
 
-interface PredictionResponse {
+interface Prediction {
+  id: string,
+  timestamp: number,
+  params: Params,
+  prediction: number
+}
+
+interface Response<T = any> {
   status: 'success' | 'error',
-  value?: number
+  payload?: T
 }
 
 const API_BASE = 'api/v1';
@@ -38,18 +45,33 @@ const post = async <T = unknown>(uri: string, data: any): Promise<T> => {
   return send<T>(uri, data, options);
 };
 
-const postParams = async (value: Value): Promise<number> => {
-  const response = await post<PredictionResponse>('attrition', { params: value });
+const throwPredictionError = () => {
+  throw new Error('Could not get prediction. Server returned 200, but model error had occured');
+};
+
+const getAttrition = async (id: string): Promise<Prediction> => {
+  const response = await get<Response<Prediction>>(`attrition/${id}`);
 
   if (response?.status !== 'success') {
-    throw new Error('Could not get prediction. Server returned 200, but the model error had occured');
+    throwPredictionError();
   }
 
-  return response.value!;
+  return response.payload!;
+};
+
+const postParams = async (params: Params): Promise<Prediction> => {
+  const response = await post<Response<Prediction>>('attrition', { params });
+
+  if (response?.status !== 'success') {
+    throwPredictionError();
+  }
+
+  return response.payload!;
 };
 
 export default {
   get,
   post,
+  getAttrition,
   postParams
 };

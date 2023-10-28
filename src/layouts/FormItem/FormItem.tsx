@@ -4,16 +4,15 @@ import './FormItem.scss';
 
 enum Type {
   Number,
-  Select,
-  CheckBox
+  Select
 }
 
 interface BaseItem<T = any> {
   id: string,
   type: Type,
   title: string,
-  value?: T,
-  onChange: (value: T) => void,
+  value: T,
+  onChange: <Q = T>(value: Q) => void,
   required?: boolean,
   disabled?: boolean,
   style?: React.CSSProperties,
@@ -24,14 +23,15 @@ interface BaseItem<T = any> {
 interface NumberItem extends BaseItem<number> {
   min?: number,
   max?: number,
-  step?: number
+  step?: number,
+  float?: boolean
 }
 
 interface SelectItem extends BaseItem<string> {
-  options: { id: string, title: string }[]
-}
-
-interface CheckBox extends BaseItem<boolean> {
+  options: {
+    id: string | number,
+    title: string
+  }[]
 }
 
 type Props = NumberItem | SelectItem;
@@ -57,25 +57,22 @@ const FormItem: React.FC<Props> = (props) => {
           min = -Infinity,
           max = Infinity,
           step = 1,
+          float = false
         } = props as NumberItem;
 
         const onNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-          // @ts-ignore
-          onChange({ [id]: Number(event.target.value) });
+          onChange(Number(event.target.value));
         };
 
         const onBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
           const nextValue = Number(event.target.value);
 
           if (nextValue < min) {
-            // @ts-ignore
-            onChange({ [id]: min });
+            onChange(min);
           } else if (nextValue > max) {
-            // @ts-ignore
-            onChange({ [id]: max });
+            onChange(max);
           } else {
-            // @ts-ignore
-            onChange({ [id]: nextValue });
+            onChange(nextValue);
           }
         };
 
@@ -102,11 +99,10 @@ const FormItem: React.FC<Props> = (props) => {
         } = props as SelectItem;
 
         const onSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-          // @ts-ignore
-          onChange({ [id]: typeof value === 'number'
-              ? Number(event.target.value)
-              : event.target.value
-          });
+          onChange(typeof value === 'number'
+            ? Number(event.target.value)
+            : event.target.value
+          );
         };
 
         return (
