@@ -18,6 +18,8 @@
   "rules": {
     "semi": "off",
     "@typescript-eslint/semi": "off",
-    "@typescript-eslint/strict-boolean-expressions": "off"
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/no-missused-promises": "off",
+    "@typescript-eslint/no-floating-promises": "off"
   }
 }
