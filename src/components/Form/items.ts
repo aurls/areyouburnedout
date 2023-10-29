@@ -105,7 +105,8 @@ const items = {
       { id: 'Medical', title: 'Medical' },
       { id: 'Technical Degree', title: 'Technical Degree' },
       { id: 'Other', title: 'Other' }
-    ]
+    ],
+    inputStyle: { minWidth: '12em' }
   },
 
   environmentSatisfaction: {
@@ -152,7 +153,8 @@ const items = {
       { id: 3, title: 'First Level Management' },
       { id: 4, title: 'Middle Management' },
       { id: 5, title: 'Senior management' }
-    ]
+    ],
+    inputStyle: { minWidth: '14em' }
   },
 
   jobRole: {
@@ -230,7 +232,8 @@ const items = {
       { id: 2, title: 'Good' },
       { id: 3, title: 'Excellent' },
       { id: 4, title: 'Outstanding' }
-    ]
+    ],
+    inputStyle: { minWidth: '10em' }
   },
 
   relationshipSatisfaction: {

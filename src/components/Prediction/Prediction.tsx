@@ -54,6 +54,7 @@ const Prediction: React.FC = () => {
             type="primary"
             onClick={onRetry}
             title="Test Again"
+            size="large"
           >
             <DoubleRightOutlined />Test Again<DoubleLeftOutlined />
           </Button>

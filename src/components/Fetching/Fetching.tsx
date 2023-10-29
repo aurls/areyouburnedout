@@ -8,7 +8,7 @@ const Fetching: React.FC = () => {
     <div className="fetching">
       <Spin size="large" />
 
-      <Typography.Title level={5}>
+      <Typography.Title level={4}>
         AI is&nbsp;running...
       </Typography.Title>
     </div>

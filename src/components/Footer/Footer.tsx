@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
   return (
     <div className="footer">
       <Typography.Paragraph>
-        <b>Doesn&#39;t</b> store user data.
+        <b>Doesn&#39;t</b> store your data.
         <br />
         Made for&nbsp;research purposes by&nbsp;
         <Typography.Link href="https://t.me/x173180" target="_blank">x173180</Typography.Link>

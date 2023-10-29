@@ -98,6 +98,7 @@ const FormItem: React.FC<Props> = (props) => {
             decimalSeparator=","
             inputMode="decimal"
             disabled={disabled}
+            style={inputStyle}
           />
         );
 
@@ -115,6 +116,7 @@ const FormItem: React.FC<Props> = (props) => {
             options={options}
             fieldNames={{ value: 'id', label: 'title' }}
             disabled={disabled}
+            style={inputStyle}
           />
         );
 
@@ -129,7 +131,7 @@ const FormItem: React.FC<Props> = (props) => {
         {title}
       </Typography.Paragraph>
 
-      <div className="form-item__input" style={inputStyle}>
+      <div className="form-item__input">
         {renderItem()}
       </div>
     </div>
