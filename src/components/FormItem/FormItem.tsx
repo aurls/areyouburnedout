@@ -95,6 +95,7 @@ const FormItem: React.FC<Props> = (props) => {
             max={max}
             step={step}
             precision={precision}
+            decimalSeparator=","
             inputMode="decimal"
             disabled={disabled}
           />
