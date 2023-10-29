@@ -15,10 +15,10 @@
   &__input {}
 
   &__number {
-    width: 8em;
+    width: 10em;
 
     &.large {
-      width: 8em;
+      width: 10em;
     }
 
     &-unit {
@@ -46,7 +46,7 @@
     }
 
     &__select {
-      width: 10em;
+      width: 8em;
     }
   }
 }

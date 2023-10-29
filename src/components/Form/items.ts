@@ -19,7 +19,8 @@ const items = {
       { id: 'Non-Travel', title: 'Never' },
       { id: 'Travel_Rarely', title: 'Rarely' },
       { id: 'Travel Frequently', title: 'Frequently' }
-    ]
+    ],
+    inputStyle: { minWidth: '10em' }
   },
 
   hourlyRate: {
