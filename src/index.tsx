@@ -9,7 +9,6 @@ import Root from './components/Root';
 import theme from './assets/style/theme';
 import './assets/style/reset.scss';
 import './assets/style/global.scss';
-import './assets/style/fonts.scss';
 
 ReactDOM
   .createRoot(document.getElementById('root') as HTMLDivElement)
