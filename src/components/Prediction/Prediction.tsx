@@ -35,7 +35,7 @@ const Prediction: React.FC = () => {
 
   const Title = (
     <Typography.Title className="prediction__title" level={3}>
-      AI&nbsp;says you&#39;re <mark>{(prediction * 100).toFixed(2)}%&nbsp;burnt&nbsp;out</mark>, bro
+      AI&nbsp;says you&#39;re <mark>{(prediction * 100).toFixed(2)}%&nbsp;burnt&nbsp;out</mark>
     </Typography.Title>
   );
 

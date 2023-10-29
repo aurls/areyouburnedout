@@ -43,7 +43,7 @@ const Form: React.FC = () => {
     <div className="form">
       <Card>
         <Typography.Title className="form__title" level={1}>
-          Test Your Burnout <mark>with&nbsp;AI</mark>
+          Test Your Professional Burnout <mark>with&nbsp;AI</mark>
         </Typography.Title>
       </Card>
 
