@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - release
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: build
+        run: |
+          npm install
+          npm run build
