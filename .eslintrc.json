@@ -21,5 +21,6 @@
     "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/no-missused-promises": "off",
     "@typescript-eslint/no-floating-promises": "off"
-  }
+  },
+  "ignorePatterns": ["webpack.config.js"]
 }
