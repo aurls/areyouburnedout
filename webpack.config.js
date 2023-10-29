@@ -52,7 +52,7 @@ module.exports = (env = {}) => {
         directory: Path.join(process.cwd(), 'dist')
       },
       port: 9000,
-      open: 'public',
+      open: true,
       compress: true,
       historyApiFallback: true,
       proxy: {
