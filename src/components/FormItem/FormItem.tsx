@@ -6,6 +6,7 @@ import {
   InputNumber,
   Select
 } from 'antd';
+import cn from 'classnames';
 
 import './FormItem.scss';
 
@@ -27,6 +28,7 @@ interface BaseItem<T = any> {
 }
 
 interface NumberItem extends BaseItem<number> {
+  unit?: string
   min?: number
   max?: number
   step?: number
@@ -59,11 +61,23 @@ const FormItem: React.FC<Props> = (props) => {
     switch (type) {
       case Type.Number:
         const {
+          unit,
           min,
           max,
           step,
           precision
         } = props as NumberItem;
+
+        const className = cn(
+          'form-item__number',
+          { large: unit }
+        );
+
+        const addonAfter = unit && (
+          <div className="form-item__number-unit">
+            {unit}
+          </div>
+        );
 
         const onFocus = (event: React.FocusEvent<HTMLInputElement>): void => {
           event.target.select();
@@ -71,11 +85,12 @@ const FormItem: React.FC<Props> = (props) => {
 
         return (
           <InputNumber
-            className="form-item__number"
+            className={className}
             id={id}
             value={value}
             onChange={onChange}
             onFocus={onFocus}
+            addonAfter={addonAfter}
             min={min}
             max={max}
             step={step}

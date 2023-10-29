@@ -49,7 +49,8 @@ const items = {
   monthlyIncome: {
     type: Type.Number,
     id: 'monthlyIncome',
-    title: 'Monthly income, $:',
+    title: 'Monthly income:',
+    unit: '$',
     min: 0,
     step: 100,
     onChange: (value: number, setParams: (paramsToMerge: Partial<Params>) => void) => {
@@ -76,7 +77,8 @@ const items = {
   distanceFromHome: {
     type: Type.Number,
     id: 'distanceFromHome',
-    title: 'Distance from home to workplace, km:',
+    title: 'Distance from home to workplace:',
+    unit: 'km',
     min: 0
   },
 
@@ -213,7 +215,8 @@ const items = {
   percentSalaryHike: {
     type: Type.Number,
     id: 'percentSalaryHike',
-    title: 'Latest salary increase at current company, %:',
+    title: 'Latest salary increase at current company:',
+    unit: '%',
     min: 0,
     step: 5
   },
