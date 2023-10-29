@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { notification } from 'antd';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Params } from '../types';
@@ -63,8 +64,8 @@ const getAttrition = createAsyncThunk(
 
 const postParams = createAsyncThunk(
   'root/postParams',
-  async ({ id, params }: { id: string, params: Params }) => {
-    const data = await server.postParams(id, params);
+  async (params: Params) => {
+    const data = await server.postParams(params);
 
     return data;
   }
@@ -92,6 +93,10 @@ const root = createSlice({
         state.prediction = action.payload.prediction;
         state.fetching = false;
         state.error = false;
+
+        if (action.payload.prediction === null) {
+          window.location.replace('/');
+        }
       })
       .addCase(getAttrition.rejected, (state) => {
         state.prediction = null;
@@ -107,11 +112,18 @@ const root = createSlice({
         state.prediction = action.payload.prediction;
         state.fetching = false;
         state.error = false;
+
+        window.location.href = action.payload.id;
       })
       .addCase(postParams.rejected, (state) => {
         state.prediction = null;
         state.fetching = false;
         state.error = true;
+
+        notification.error({
+          message: 'Error Occured',
+          description: 'Please, check connection and try again'
+        });
       })
   }
 });

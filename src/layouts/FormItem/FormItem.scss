@@ -9,44 +9,20 @@
 
   &__title {
     width: 50%;
+    margin-top: -1px!important;
+    margin-bottom: 0!important;
+    // text-align: right;
   }
 
   &__input {
-    position: relative;
     width: 50%;
   }
 
   &__number {
-    width: 100%;
-    border: 1px solid #4a4a4a;
-    padding: .3em;
-    transition: all .2s ease;
-
-    &:disabled {
-      color: #c0c0c0;
-      cursor: not-allowed;
-    }
+    width: 6em;
   }
 
   &__select {
     width: 100%;
-    border: 1px solid #4a4a4a;
-    padding: .3em;
-    transition: all .2s ease;
-    cursor: pointer;
-
-    &:disabled {
-      color: #c0c0c0;
-      cursor: not-allowed;
-    }
-  }
-
-  &__select-icon {
-    z-index: 1000;
-    position: absolute;
-    top: .3em;
-    right: .3em;
-    user-select: none;
-    pointer-events: none;
   }
 }

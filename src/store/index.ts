@@ -4,15 +4,13 @@ import logger from 'redux-logger';
 
 import type { TypedUseSelectorHook } from 'react-redux';
 
-import { root, notifications } from '../slices';
-import notificationMiddleware from './middlewares/notifications';
+import { root } from '../slices';
 
 const store = configureStore({
   reducer: {
-    root: root.reducer,
-    notifications: notifications.reducer
+    root: root.reducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(notificationMiddleware, logger)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
 });
 
 export type State = ReturnType<typeof store.getState>;

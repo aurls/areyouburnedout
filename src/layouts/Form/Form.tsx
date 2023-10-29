@@ -1,11 +1,9 @@
 import React from 'react';
 import { v4 as uuid } from 'uuid';
+import { Typography, Card, Button, Popconfirm } from 'antd';
 import { useSelector, useDispatch } from '../../store';
 import { root } from '../../slices';
 import FormItem from '../FormItem';
-import Button from '../../components/Button';
-import Prediction from '../../components/Prediction';
-import Error from '../../components/Error';
 
 import type { Params } from '../../types';
 
@@ -15,9 +13,7 @@ import './Form.scss';
 
 const Form: React.FC = () => {
   const params = useSelector((state) => state.root.params);
-  const prediction = useSelector((state) => state.root.prediction);
   const fetching = useSelector((state) => state.root.fetching);
-  const error = useSelector((state) => state.root.error);
 
   const dispatch = useDispatch();
 
@@ -26,32 +22,24 @@ const Form: React.FC = () => {
   };
 
   const onReset = (): void => {
-    if (confirm('Are you sure you want to reset? Unsaved data will be lost.')) {
-      dispatch(root.reset());
-    }
+    dispatch(root.reset());
   };
 
   const onSubmit = (): void => {
-    const id = uuid();
-
-    dispatch(root.postParams({ id, params }));
-
-    window.location.href = id;
+    dispatch(root.postParams(params));
   };
 
   return (
-    <>
-      <h2 className="form__title">
+    <div className="form">
+      <Typography.Title className="form__title" level={1}>
         How Burned&nbsp;Out Are&nbsp;You?, Bro?&nbsp;🤔
         <br />
         Learn&nbsp;It With&nbsp;AI&nbsp;&gt;&gt;
-      </h2>
+      </Typography.Title>
 
-      <form className="form">
-        {itemGroups.map((group) => (
-          <div className="form__group" key={group.id}>
-            <h4 className="form__group-title">{group.title}</h4>
-
+      {itemGroups.map((group) => (
+        <Card title={group.title} key={group.id}>
+          <div className="form__group">
             {group.items.map((item) => {
               const value = (params as Record<string, any>)[item.id];
 
@@ -69,23 +57,42 @@ const Form: React.FC = () => {
                   {...item}
                   value={value}
                   onChange={onChange}
+                  disabled={fetching}
                 />
               );
             })}
           </div>
-        ))}
-      </form>
+        </Card>
+      ))}
 
       <div className="form__actions">
-        <Button primary onClick={onSubmit} title="Ask AI">
+        <Popconfirm
+          title="Are you sure you want to reset?"
+          description="Unsaved data will be lost."
+          onConfirm={onReset}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Button
+            title="Reset"
+            size="large"
+            danger
+          >
+            Reset
+          </Button>
+        </Popconfirm>
+
+        <Button
+          type="primary"
+          onClick={onSubmit}
+          title="Ask AI"
+          size="large"
+          loading={fetching}
+        >
           &gt;&gt; Ask AI &lt;&lt;
         </Button>
-
-        <Button onClick={onReset} title="Reset">
-          Reset
-        </Button>
       </div>
-    </>
+    </div>
   );
 };
 

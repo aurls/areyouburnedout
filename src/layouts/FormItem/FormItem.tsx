@@ -1,6 +1,11 @@
 /* eslint-disable no-case-declarations */
 
 import React from 'react';
+import {
+  Typography,
+  InputNumber,
+  Select
+} from 'antd';
 
 import './FormItem.scss';
 
@@ -14,8 +19,7 @@ interface BaseItem<T = any> {
   type: Type
   title: string
   value: T
-  onChange: <Q = T>(value: Q) => void
-  required?: boolean
+  onChange: (value: T) => void
   disabled?: boolean
   style?: React.CSSProperties
   labelStyle?: React.CSSProperties
@@ -26,7 +30,7 @@ interface NumberItem extends BaseItem<number> {
   min?: number
   max?: number
   step?: number
-  float?: boolean
+  precision?: number
 }
 
 interface SelectItem extends BaseItem<string> {
@@ -45,7 +49,6 @@ const FormItem: React.FC<Props> = (props) => {
     title,
     value,
     onChange,
-    required = true,
     disabled = false,
     style = {},
     labelStyle = {},
@@ -56,46 +59,28 @@ const FormItem: React.FC<Props> = (props) => {
     switch (type) {
       case Type.Number:
         const {
-          min = -Infinity,
-          max = Infinity,
-          step = 1,
-          float = false
+          min,
+          max,
+          step,
+          precision
         } = props as NumberItem;
-
-        const onNumberChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-          onChange(Number(event.target.value));
-        };
 
         const onFocus = (event: React.FocusEvent<HTMLInputElement>): void => {
           event.target.select();
         };
 
-        const onBlur = (event: React.FocusEvent<HTMLInputElement>): void => {
-          const nextValue = Number(event.target.value);
-
-          if (nextValue < min) {
-            onChange(min);
-          } else if (nextValue > max) {
-            onChange(max);
-          } else {
-            onChange(nextValue);
-          }
-        };
-
         return (
-          <input
+          <InputNumber
             className="form-item__number"
-            type="number"
             id={id}
-            name={id}
+            value={value}
+            onChange={onChange}
+            onFocus={onFocus}
             min={min}
             max={max}
             step={step}
-            value={value}
-            onChange={onNumberChange}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            required={required}
+            precision={precision}
+            decimalSeparator=","
             disabled={disabled}
           />
         );
@@ -105,35 +90,16 @@ const FormItem: React.FC<Props> = (props) => {
           options
         } = props as SelectItem;
 
-        const onSelectChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
-          onChange(typeof value === 'number'
-            ? Number(event.target.value)
-            : event.target.value
-          );
-        };
-
         return (
-          <>
-            <select
-              className="form-item__select"
-              id={id}
-              name={id}
-              value={value}
-              onChange={onSelectChange}
-              required={required}
-              disabled={disabled}
-            >
-              {options.map((option) => (
-                <option key={option.id} value={option.id}>
-                  {option.title}
-                </option>
-              ))}
-            </select>
-
-            <div className="form-item__select-icon">
-              ▼
-            </div>
-          </>
+          <Select
+            className="form-item__select"
+            id={id}
+            value={value}
+            onChange={onChange}
+            options={options}
+            fieldNames={{ value: 'id', label: 'title' }}
+            disabled={disabled}
+          />
         );
 
       default:
@@ -143,9 +109,9 @@ const FormItem: React.FC<Props> = (props) => {
 
   return (
     <div className="form-item" style={style}>
-      <label className="form-item__title" htmlFor={id} style={labelStyle}>
+      <Typography.Paragraph className="form-item__title" style={labelStyle}>
         {title}
-      </label>
+      </Typography.Paragraph>
 
       <div className="form-item__input" style={inputStyle}>
         {renderItem()}

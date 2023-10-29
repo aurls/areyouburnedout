@@ -1,9 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Button from '../../components/Button';
-import Error from './PredictionError';
-import Result from './PredictionResult';
-import Spinner from '../../components/Spinner';
+import { message, Result, Button, Spin } from 'antd';
 import { useSelector, useDispatch } from '../../store';
 import { root } from '../../slices';
 
@@ -23,33 +20,60 @@ const Prediction: React.FC = () => {
     dispatch(root.reset());
   };
 
-  React.useEffect(() => {
-    if (!prediction) {
-      dispatch(root.getAttrition(id as string))
+  const onCopy = async (): Promise<void> => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+
+      message.info('Link copied to clipboard');
+    } catch {
+      console.error('Could not copy href');
     }
+  };
+
+  React.useEffect(() => {
+    dispatch(root.getAttrition(id as string));
   }, []);
 
-  if (!fetching && !prediction) {
-    // window.location.replace('/');
-  }
-
-  if (fetching) {
-    return <Spinner>Searching for result...</Spinner>;
-  }
-
   const ToForm = (
-    <Link to="/">
-      <Button primary onClick={onRetry} title="Test Again">
+    <Link key="form" to="/">
+      <Button type="primary" onClick={onRetry} title="Test Again">
         &gt;&gt; Test Again &lt;&lt;
       </Button>
     </Link>
   );
 
+  if (fetching) {
+    return (
+      <div className="prediction">
+        <Spin size="large" />
+      </div>
+    );
+  }
+
   return (
     <div className="prediction">
-      {false
-        ? <Error toForm={ToForm} />
-        : <Result prediction={prediction as number} toForm={ToForm} />
+      {error
+        ? (
+          <Result
+            status="error"
+            title="Error Occured"
+            subTitle="Please, check connection and try again"
+            extra={[ToForm]}
+          />
+          )
+        : (
+          <Result
+            status="info"
+            title={`AI supposes, that you have burned out at ${prediction}%, bro`}
+            subTitle="Place for recommendation"
+            extra={[
+              ToForm,
+              <Button key="copy" onClick={onCopy as () => void} title="Copy Link">
+                Copy Link
+              </Button>
+            ]}
+          />
+          )
       }
     </div>
   );

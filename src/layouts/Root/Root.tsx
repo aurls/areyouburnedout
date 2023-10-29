@@ -1,7 +1,6 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import Notifications from '../../components/Notifications';
 import Form from '../Form';
 import Prediction from '../Prediction';
 
@@ -20,13 +19,9 @@ const router = createBrowserRouter([
 
 const Root: React.FC = () => {
   return (
-    <>
-      <Notifications />
-
-      <div className="root">
-        <RouterProvider router={router} />
-      </div>
-    </>
+    <div className="root">
+      <RouterProvider router={router} />
+    </div>
   );
 };
 

@@ -50,23 +50,55 @@ const throwPredictionError = (): Error => {
 };
 
 const getAttrition = async (id: string): Promise<Prediction> => {
-  const response = await get<Response<Prediction>>(`attrition/${id}`);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const random = Math.random();
 
-  if (response?.status !== 'success') {
-    throwPredictionError();
-  }
+      if (random > .33) {
+        resolve({
+          id: 'someid',
+          prediction: 14,
+          params: {}
+        })
+      } else {
+        reject();
+      }
+    }, 3000);
+  });
 
-  return response.payload as Prediction;
+  // const response = await get<Response<Prediction>>(`attrition/${id}`);
+
+  // if (response?.status !== 'success') {
+  //   throwPredictionError();
+  // }
+
+  // return response.payload as Prediction;
 };
 
-const postParams = async (id: string, params: Params): Promise<Prediction> => {
-  const response = await post<Response<Prediction>>('attrition', { id, params });
+const postParams = async (params: Params): Promise<Prediction> => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const random = Math.random();
 
-  if (response?.status !== 'success') {
-    throwPredictionError();
-  }
+      if (random > .33) {
+        resolve({
+          id: 'someid',
+          prediction: 14,
+          params: {}
+        })
+      } else {
+        reject();
+      }
+    }, 3000);
+  });
 
-  return response.payload as Prediction;
+  // const response = await post<Response<Prediction>>('attrition', { id, params });
+
+  // if (response?.status !== 'success') {
+  //   throwPredictionError();
+  // }
+
+  // return response.payload as Prediction;
 };
 
 export default {

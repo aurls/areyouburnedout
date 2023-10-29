@@ -1,9 +1,12 @@
 @import "../../assets/style/";
 
 .root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 2em 2em 10em 2em;
   width: 100%;
   min-width: 280px;
   max-width: 600px;

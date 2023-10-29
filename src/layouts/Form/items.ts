@@ -51,7 +51,7 @@ const items = {
     id: 'monthlyIncome',
     title: 'Monthly income, $:',
     min: 0,
-    step: 1000
+    step: 100
   },
 
   department: {
