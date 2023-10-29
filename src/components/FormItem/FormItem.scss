@@ -31,14 +31,14 @@
   }
 
   &__select {
-    width: 8em;
+    width: 10em;
   }
 }
 
 @media (max-width: 600px) {
   .form-item {
     &__number {
-      width: 6em;
+      width: 8em;
 
       &.large {
         width: 8em;
@@ -46,7 +46,7 @@
     }
 
     &__select {
-      width: 8em;
+      width: 10em;
     }
   }
 }
