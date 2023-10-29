@@ -31,7 +31,9 @@
   }
 
   &__select {
-    width: 10em;
+    width: auto;
+    min-width: 10em;
+    max-width: 14em;
   }
 }
 
@@ -46,7 +48,9 @@
     }
 
     &__select {
-      width: 8em;
+      width: auto;
+      min-width: 8em;
+      max-width: 12em;
     }
   }
 }

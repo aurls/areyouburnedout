@@ -19,8 +19,7 @@ const items = {
       { id: 'Non-Travel', title: 'Never' },
       { id: 'Travel_Rarely', title: 'Rarely' },
       { id: 'Travel Frequently', title: 'Frequently' }
-    ],
-    inputStyle: { minWidth: '10em' }
+    ]
   },
 
   hourlyRate: {
@@ -106,8 +105,7 @@ const items = {
       { id: 'Medical', title: 'Medical' },
       { id: 'Technical Degree', title: 'Technical Degree' },
       { id: 'Other', title: 'Other' }
-    ],
-    inputStyle: { minWidth: '12em' }
+    ]
   },
 
   environmentSatisfaction: {
@@ -155,7 +153,7 @@ const items = {
       { id: 4, title: 'Middle Management' },
       { id: 5, title: 'Senior management' }
     ],
-    inputStyle: { minWidth: '14em' }
+    inputStyle: { minWidth: '12em' }
   },
 
   jobRole: {
@@ -233,8 +231,7 @@ const items = {
       { id: 2, title: 'Good' },
       { id: 3, title: 'Excellent' },
       { id: 4, title: 'Outstanding' }
-    ],
-    inputStyle: { minWidth: '10em' }
+    ]
   },
 
   relationshipSatisfaction: {
