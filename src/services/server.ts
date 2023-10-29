@@ -49,32 +49,6 @@ const throwPredictionError = (): Error => {
   throw new Error('Failed to get prediction. Server returned 200, but model error had occured');
 };
 
-const getAttrition = async (id: string): Promise<Prediction> => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const random = Math.random();
-
-      if (random > .33) {
-        resolve({
-          id: 'someid',
-          prediction: random,
-          params: {}
-        })
-      } else {
-        reject();
-      }
-    }, 3000);
-  });
-
-  // const response = await get<Response<Prediction>>(`attrition/${id}`);
-
-  // if (response?.status !== 'success') {
-  //   throwPredictionError();
-  // }
-
-  // return response.payload as Prediction;
-};
-
 const postParams = async (params: Params): Promise<Prediction> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
