@@ -34,7 +34,6 @@ module.exports = (env = {}) => {
   };
 
   return {
-    name: 'client',
     mode: IS_DEV ? 'development' : 'production',
     devtool: IS_DEV ? 'inline-source-map' : 'source-map',
     entry: Path.join(process.cwd(), 'src', 'index.tsx'),
