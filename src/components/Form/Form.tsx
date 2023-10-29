@@ -1,19 +1,21 @@
 import React from 'react';
-import { v4 as uuid } from 'uuid';
 import { Typography, Card, Button, Popconfirm } from 'antd';
+import { DoubleRightOutlined, DoubleLeftOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from '../../store';
 import { root } from '../../slices';
 import FormItem from '../FormItem';
+import Footer from '../Footer';
 
 import type { Params } from '../../types';
 
 import itemGroups from './items';
 
+import localStorage from '../../services/localStorage';
+
 import './Form.scss';
 
 const Form: React.FC = () => {
   const params = useSelector((state) => state.root.params);
-  const fetching = useSelector((state) => state.root.fetching);
 
   const dispatch = useDispatch();
 
@@ -29,17 +31,35 @@ const Form: React.FC = () => {
     dispatch(root.postParams(params));
   };
 
+  React.useEffect(() => {
+    const prevParams = localStorage.get('alyaska/params');
+
+    if (prevParams) {
+      setParams(prevParams);
+    }
+  }, []);
+
   return (
     <div className="form">
-      <Typography.Title className="form__title" level={1}>
-        How Burned&nbsp;Out Are&nbsp;You?, Bro?&nbsp;🤔
-        <br />
-        Learn&nbsp;It With&nbsp;AI&nbsp;&gt;&gt;
-      </Typography.Title>
+      <Card>
+        <Typography.Title className="form__title" level={1}>
+          <mark>How Much Burned&nbsp;Out</mark> Are&nbsp;You At&nbsp;Work, Bro?
+
+          <br />
+
+          <span className="form__title-secondary">
+            Test&nbsp;It With&nbsp;AI&nbsp;<DoubleRightOutlined />
+          </span>
+        </Typography.Title>
+      </Card>
 
       {itemGroups.map((group) => (
-        <Card title={group.title} key={group.id}>
-          <div className="form__group">
+        <Card key={group.id} className="form__group" bodyStyle={{ padding: 0 }}>
+          <Typography.Title className="form__group-title" level={4}>
+            {group.title}
+          </Typography.Title>
+
+          <div className="form__group-items">
             {group.items.map((item) => {
               const value = (params as Record<string, any>)[item.id];
 
@@ -57,7 +77,6 @@ const Form: React.FC = () => {
                   {...item}
                   value={value}
                   onChange={onChange}
-                  disabled={fetching}
                 />
               );
             })}
@@ -87,11 +106,12 @@ const Form: React.FC = () => {
           onClick={onSubmit}
           title="Ask AI"
           size="large"
-          loading={fetching}
         >
-          &gt;&gt; Ask AI &lt;&lt;
+          <DoubleRightOutlined />Ask AI<DoubleLeftOutlined />
         </Button>
       </div>
+
+      <Footer />
     </div>
   );
 };

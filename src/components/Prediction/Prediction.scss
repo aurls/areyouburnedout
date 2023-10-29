@@ -1,0 +1,19 @@
+@import "../../assets/style/";
+
+.prediction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+
+  &__icon {
+    font-size: 4em !important;
+  }
+
+  &__title {
+    & mark {
+      background: #ffe58f;
+    }
+  }
+}

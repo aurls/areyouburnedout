@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { notification } from 'antd';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Params } from '../types';
 
 import server from '../services/server';
+import localStorage from '../services/localStorage';
 
 const defaultParams: Params = {
   age: 23,
@@ -53,15 +53,6 @@ const initialState: State = {
   error: false
 };
 
-const getAttrition = createAsyncThunk(
-  'root/getAttrition',
-  async (id: string) => {
-    const data = await server.getAttrition(id);
-
-    return data;
-  }
-);
-
 const postParams = createAsyncThunk(
   'root/postParams',
   async (params: Params) => {
@@ -79,32 +70,21 @@ const root = createSlice({
       state.params = action.payload;
       state.prediction = null;
       state.error = false;
+
+      localStorage.set('alyaska/params', action.payload);
     },
-    reset: () => initialState
+    setError: (state, action: PayloadAction<boolean>) => {
+      state.error = action.payload;
+    },
+    reset: () => {
+      localStorage.remove('alyaska/params');
+
+      return initialState;
+    }
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getAttrition.pending, (state) => {
-        state.prediction = null;
-        state.fetching = true;
-        state.error = false;
-      })
-      .addCase(getAttrition.fulfilled, (state, action) => {
-        state.prediction = action.payload.prediction;
-        state.fetching = false;
-        state.error = false;
-
-        if (action.payload.prediction === null) {
-          window.location.replace('/');
-        }
-      })
-      .addCase(getAttrition.rejected, (state) => {
-        state.prediction = null;
-        state.fetching = false;
-        state.error = true;
-      })
       .addCase(postParams.pending, (state) => {
-        state.prediction = null;
         state.fetching = true;
         state.error = false;
       })
@@ -112,25 +92,16 @@ const root = createSlice({
         state.prediction = action.payload.prediction;
         state.fetching = false;
         state.error = false;
-
-        window.location.href = action.payload.id;
       })
       .addCase(postParams.rejected, (state) => {
-        state.prediction = null;
         state.fetching = false;
         state.error = true;
-
-        notification.error({
-          message: 'Error Occured',
-          description: 'Please, check connection and try again'
-        });
       })
   }
 });
 
 export default {
   ...root.actions,
-  getAttrition,
   postParams,
   reducer: root.reducer
 };

@@ -51,7 +51,15 @@ const items = {
     id: 'monthlyIncome',
     title: 'Monthly income, $:',
     min: 0,
-    step: 100
+    step: 100,
+    onChange: (value: number, setParams: (paramsToMerge: Partial<Params>) => void) => {
+      setParams({
+        hourlyRate: value / 160,
+        dailyRate: value / 20,
+        monthlyRate: value,
+        monthlyIncome: value
+      });
+    }
   },
 
   department: {
@@ -343,7 +351,7 @@ const groups = [
   },
   {
     id: 'balance',
-    title: 'Work Life Balance',
+    title: 'Work-Life Balance',
     items: [items.distanceFromHome, items.workLifeBalance]
   },
   {

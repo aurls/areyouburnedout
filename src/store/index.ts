@@ -10,7 +10,7 @@ const store = configureStore({
   reducer: {
     root: root.reducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
+  middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), logger]
 });
 
 export type State = ReturnType<typeof store.getState>;

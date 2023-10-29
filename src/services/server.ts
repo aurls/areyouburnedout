@@ -24,7 +24,7 @@ const send = async <T = unknown>(uri: string, data: any = null, options: Request
   );
 
   if (response.status !== 200) {
-    throw new Error(`Could not fetch ${uri}, received ${response.status}`);
+    throw new Error(`Failed to fetch ${uri}, received ${response.status}`);
   }
 
   return await response.json();
@@ -46,7 +46,7 @@ const post = async <T = unknown>(uri: string, data: any): Promise<T> => {
 };
 
 const throwPredictionError = (): Error => {
-  throw new Error('Could not get prediction. Server returned 200, but model error had occured');
+  throw new Error('Failed to get prediction. Server returned 200, but model error had occured');
 };
 
 const getAttrition = async (id: string): Promise<Prediction> => {
@@ -57,7 +57,7 @@ const getAttrition = async (id: string): Promise<Prediction> => {
       if (random > .33) {
         resolve({
           id: 'someid',
-          prediction: 14,
+          prediction: random,
           params: {}
         })
       } else {
@@ -83,7 +83,7 @@ const postParams = async (params: Params): Promise<Prediction> => {
       if (random > .33) {
         resolve({
           id: 'someid',
-          prediction: 14,
+          prediction: random,
           params: {}
         })
       } else {
@@ -104,6 +104,5 @@ const postParams = async (params: Params): Promise<Prediction> => {
 export default {
   get,
   post,
-  getAttrition,
   postParams
 };

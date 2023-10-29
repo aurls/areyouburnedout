@@ -1,0 +1,62 @@
+@import "../../assets/style/";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: 0 auto;
+  padding: 1em;
+  width: 100%;
+  min-width: 280px;
+  max-width: 600px;
+
+  &__title {
+    text-align: center;
+    margin: 0 !important;
+
+    & mark {
+      background: #ffe58f;
+    }
+
+    &-secondary {
+      color: rgba(0,0,0,.45);;
+    }
+  }
+
+  &__group {
+    padding: 1.75em;
+
+    &-title {
+      margin: 0 0 1em 0 !important;
+      color: #869ab8;
+    }
+
+    &-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: .75em;
+    margin: 0 0 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .form {
+    padding: 1em 0;
+
+    &__group {
+      padding: 1em;
+      border-radius: 0;
+    }
+
+    &__actions {
+      margin: 0 1em 0 auto;
+    }
+  }
+}
