@@ -327,7 +327,7 @@ const groups = [
   {
     id: 'education',
     title: 'Education',
-    items: [items.education, items.educationField]
+    items: [items.education, items.educationField, items.trainingTimesLastYear]
   },
   {
     id: 'experience',
