@@ -1,6 +1,6 @@
-# Test Your Professional Burnout with AI
+# Burnout Testing using Machine Learning
 
-Web app to test professional burnout with AI. The model trained on [IBM dataset](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset).
+Web app to test professional burnout with machine learning. The model trained on [IBM dataset](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset).
 
 > Demo is [here](https://aurls.github.io/anchorage/).
 
