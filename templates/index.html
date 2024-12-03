@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Веб-опрос</title>
+</head>
+<body>
+    <form action="/" method="post" onsubmit="prepareData()">
+        <!-- Категориальные переменные -->
+        <h3>Категориальные переменные:</h3>
+
+        <!-- BusinessTravel -->
+        <label for="BusinessTravel">Как часто вы путешествуете по работе?</label>
+        <select id="BusinessTravel" name="BusinessTravel">
+            <option value="Non-Travel">Без поездок</option>
+            <option value="Travel_Rarely">Редкие поездки</option>
+            <option value="Travel_Frequently">Частые поездки</option>
+        </select><br><br>
+        
+        <!-- Department -->
+        <label for="Department">В каком отделе вы работаете?</label>
+        <select id="Department" name="Department">
+            <option value="Sales">Продажи</option>
+            <option value="Research & Development">Исследования и разработка</option>
+            <option value="Human Resources">Кадровая служба</option>
+        </select><br><br>
+        
+        <!-- EducationField -->
+        <label for="EducationField">Ваше образование:</label>
+        <select id="EducationField" name="EducationField">
+            <option value="Life Sciences">Биологические науки</option>
+            <option value="Medical">Медицина</option>
+            <option value="Marketing">Маркетинг</option>
+            <option value="Technical Degree">Техническое образование</option>
+            <option value="Other">Другое</option>
+            <option value="Human Resources">Кадровое дело</option>
+        </select><br><br>
+
+        <!-- Gender -->
+        <label for="Gender">Ваш пол:</label>
+        <select id="Gender" name="Gender">
+            <option value="Male">Мужчина</option>
+            <option value="Female">Женщина</option>
+        </select><br><br>
+        
+        <!-- JobRole -->
+        <label for="JobRole">Ваша должность:</label>
+        <select id="JobRole" name="JobRole">
+            <option value="Sales Executive">Исполнитель по продажам</option>
+            <option value="Research Scientist">Исследователь-ученый</option>
+            <option value="Laboratory Technician">Лабораторный техник</option>
+            <option value="Manufacturing Director">Директор по производству</option>
+            <option value="Healthcare Representative">Представитель в сфере здравоохранения</option>
+            <option value="Manager">Менеджер</option>
+            <option value="Sales Representative">Представитель по продажам</option>
+            <option value="Research Director">Директор по исследованиям</option>
+            <option value="Human Resources">Кадры</option>
+        </select><br><br>
+        
+        <!-- MaritalStatus -->
+        <label for="MaritalStatus">Ваш семейный статус:</label>
+        <select id="MaritalStatus" name="MaritalStatus">
+            <option value="Single">Холост/Не замужем</option>
+            <option value="Married">В браке</option>
+            <option value="Divorced">В разводе</option>
+        </select><br><br>
+        
+        <!-- Over18 -->
+        <label for="Over18">Вам есть 18 лет и более?</label>
+        <select id="Over18" name="Over18">
+            <option value="Y">Да</option>
+        </select><br><br>
+        
+        <!-- OverTime -->
+        <label for="OverTime">Вы работаете сверхурочно?</label>
+        <select id="OverTime" name="OverTime">
+            <option value="Yes">Да</option>
+            <option value="No">Нет</option>
+        </select><br><br>
+        
+        <!-- Непрерывные переменные -->
+        <h3>Непрерывные переменные:</h3>
+
+        <!-- Age -->
+        <label for="Age">Ваш возраст:</label>
+        <input type="text" id="Age" name="Age"><br><br>
+        
+        <!-- DailyRate -->
+        <label for="DailyRate">Ваша ежедневная ставка:</label>
+        <input type="text" id="DailyRate" name="DailyRate"><br><br>
+        
+        <!-- DistanceFromHome -->
+        <label for="DistanceFromHome">Расстояние от дома до работы (в милях):</label>
+        <input type="text" id="DistanceFromHome" name="DistanceFromHome"><br><br>
+        
+        <!-- Education -->
+        <label for="Education">Ваш уровень образования:</label>
+        <input type="text" id="Education" name="Education"><br><br>
+        
+        <!-- EmployeeCount -->
+        <label for="EmployeeCount">Количество сотрудников:</label>
+        <input type="text" id="EmployeeCount" name="EmployeeCount"><br><br>
+        
+        <!-- EmployeeNumber -->
+        <label for="EmployeeNumber">Номер сотрудника:</label>
+        <input type="text" id="EmployeeNumber" name="EmployeeNumber"><br><br>
+        
+        <!-- EnvironmentSatisfaction -->
+        <label for="EnvironmentSatisfaction">Уровень удовлетворенности рабочей средой (1 - 4):</label>
+        <input type="text" id="EnvironmentSatisfaction" name="EnvironmentSatisfaction"><br><br>
+        
+        <!-- HourlyRate -->
+        <label for="HourlyRate">Часовая ставка:</label>
+        <input type="text" id="HourlyRate" name="HourlyRate"><br><br>
+        
+        <!-- JobInvolvement -->
+        <label for="JobInvolvement">Уровень вовлеченности в работу (1 - 4):</label>
+        <input type="text" id="JobInvolvement" name="JobInvolvement"><br><br>
+        
+        <!-- JobLevel -->
+        <label for="JobLevel">Уровень должности (1 - 5):</label>
+        <input type="text" id="JobLevel" name="JobLevel"><br><br>
+        
+        <!-- JobSatisfaction -->
+        <label for="JobSatisfaction">Уровень удовлетворенности работой (1 - 4):</label>
+        <input type="text" id="JobSatisfaction" name="JobSatisfaction"><br><br>
+        
+        <!-- MonthlyIncome -->
+        <label for "MonthlyIncome">Ежемесячный доход:</label>
+        <input type="text" id="MonthlyIncome" name="MonthlyIncome"><br><br>
+        
+        <!-- MonthlyRate -->
+        <label for="MonthlyRate">Ежемесячная ставка:</label>
+        <input type="text" id="MonthlyRate" name="MonthlyRate"><br><br>
+        
+        <!-- NumCompaniesWorked -->
+        <label for="NumCompaniesWorked">Число компаний, в которых вы работали:</label>
+        <input type="text" id="NumCompaniesWorked" name="NumCompaniesWorked"><br><br>
+        
+        <!-- PercentSalaryHike -->
+        <label for="PercentSalaryHike">Процент повышения зарплаты:</label>
+        <input type="text" id="PercentSalaryHike" name="PercentSalaryHike"><br><br>
+        
+        <!-- PerformanceRating -->
+        <label for="PerformanceRating">Рейтинг производительности (3 или 4):</label>
+        <input type="text" id="PerformanceRating" name="PerformanceRating"><br><br>
+        
+        <!-- RelationshipSatisfaction -->
+        <label for="RelationshipSatisfaction">Уровень удовлетворенности в отношениях (1 - 4):</label>
+        <input type="text" id="RelationshipSatisfaction" name="RelationshipSatisfaction"><br><br>
+        
+        <!-- StandardHours -->
+        <label for="StandardHours">Стандартное количество часов (80):</label>
+        <input type="text" id="StandardHours" name="StandardHours"><br><br>
+        
+        <!-- StockOptionLevel -->
+        <label for="StockOptionLevel">Уровень акций (0 - 3):</label>
+        <input type="text" id="StockOptionLevel" name="StockOptionLevel"><br><br>
+        
+        <!-- TotalWorkingYears -->
+        <label for="TotalWorkingYears">Общий опыт работы (лет):</label>
+        <input type="text" id="TotalWorkingYears" name="TotalWorkingYears"><br><br>
+        
+        <!-- TrainingTimesLastYear -->
+        <label for="TrainingTimesLastYear">Время обучения в прошлом году:</label>
+        <input type="text" id="TrainingTimesLastYear" name="TrainingTimesLastYear"><br><br>
+        
+        <!-- WorkLifeBalance -->
+        <label for="WorkLifeBalance">Баланс работы и личной жизни (1 - 4):</label>
+        <input type="text" id="WorkLifeBalance" name="WorkLifeBalance"><br><br>
+        
+        <!-- YearsAtCompany -->
+        <label for="YearsAtCompany">Лет в компании:</label>
+        <input type="text" id="YearsAtCompany" name="YearsAtCompany"><br><br>
+        
+        <!-- YearsInCurrentRole -->
+        <label for="YearsInCurrentRole">Лет на текущей должности:</label>
+        <input type="text" id="YearsInCurrentRole" name="YearsInCurrentRole"><br><br>
+        
+        <!-- YearsSinceLastPromotion -->
+        <label for="YearsSinceLastPromotion">Лет с последнего повышения:</label>
+        <input type="text" id="YearsSinceLastPromotion" name="YearsSinceLastPromotion"><br><br>
+        
+        <!-- YearsWithCurrManager -->
+        <label for="YearsWithCurrManager">Лет с текущим руководителем:</label>
+        <input type="text" id="YearsWithCurrManager" name="YearsWithCurrManager"><br><br>
+        
+        <!-- Скрытое поле для передачи JSON-данных -->
+        <input type="hidden" name="data" id="data">
+
+        <!-- Кнопка для отправки формы -->
+        <input type="submit" value="Отправить">
+    </form>
+
+    <script>
+        function prepareData() {
+            // Собираем данные из категориальных переменных
+            var categoricalData = {
+                BusinessTravel: document.getElementById("BusinessTravel").value,
+                Department: document.getElementById("Department").value,
+                EducationField: document.getElementById("EducationField").value,
+                Gender: document.getElementById("Gender").value,
+                JobRole: document.getElementById("JobRole").value,
+                MaritalStatus: document.getElementById("MaritalStatus").value,
+                Over18: document.getElementById("Over18").value,
+                OverTime: document.getElementById("OverTime").value
+            };
+
+            // Собираем данные из непрерывных переменных
+            var continuousData = {
+                Age: parseFloat(document.getElementById("Age").value),
+                DailyRate: parseFloat(document.getElementById("DailyRate").value),
+                DistanceFromHome: parseFloat(document.getElementById("DistanceFromHome").value),
+                Education: parseFloat(document.getElementById("Education").value),
+                EmployeeCount: parseFloat(document.getElementById("EmployeeCount").value),
+                EmployeeNumber: parseFloat(document.getElementById("EmployeeNumber").value),
+                EnvironmentSatisfaction: parseFloat(document.getElementById("EnvironmentSatisfaction").value),
+                HourlyRate: parseFloat(document.getElementById("HourlyRate").value),
+                JobInvolvement: parseFloat(document.getElementById("JobInvolvement").value),
+                JobLevel: parseFloat(document.getElementById("JobLevel").value),
+                JobSatisfaction: parseFloat(document.getElementById("JobSatisfaction").value),
+                MonthlyIncome: parseFloat(document.getElementById("MonthlyIncome").value),
+                MonthlyRate: parseFloat(document.getElementById("MonthlyRate").value),
+                NumCompaniesWorked: parseFloat(document.getElementById("NumCompaniesWorked").value),
+                PercentSalaryHike: parseFloat(document.getElementById("PercentSalaryHike").value),
+                PerformanceRating: parseFloat(document.getElementById("PerformanceRating").value),
+                RelationshipSatisfaction: parseFloat(document.getElementById("RelationshipSatisfaction").value),
+                StandardHours: parseFloat(document.getElementById("StandardHours").value),
+                StockOptionLevel: parseFloat(document.getElementById("StockOptionLevel").value),
+                TotalWorkingYears: parseFloat(document.getElementById("TotalWorkingYears").value),
+                TrainingTimesLastYear: parseFloat(document.getElementById("TrainingTimesLastYear").value),
+                WorkLifeBalance: parseFloat(document.getElementById("WorkLifeBalance").value),
+                YearsAtCompany: parseFloat(document.getElementById("YearsAtCompany").value),
+                YearsInCurrentRole: parseFloat(document.getElementById("YearsInCurrentRole").value),
+                YearsSinceLastPromotion: parseFloat(document.getElementById("YearsSinceLastPromotion").value),
+                YearsWithCurrManager: parseFloat(document.getElementById("YearsWithCurrManager").value)
+            };
+
+            // Создаем объект с обоими наборами данных
+            var formData = {
+                categorical: categoricalData,
+                continuous: continuousData
+            };
+
+            // Устанавливаем JSON-данные в скрытое поле
+            document.getElementById("data").value = JSON.stringify(formData);
+        }
+    </script>
+</body>
+</html>
